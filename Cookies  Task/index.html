@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الكوكيز</title>
+    <link rel="stylesheet" href="cookies.js">
+</head>
+<body>
+
+    <h1>اختبار الكوكيز</h1>
+
+    <label for="cookieName">اسم الكوكي:</label>
+    <input type="text" id="cookieName" placeholder="أدخل اسم الكوكي">
+    <br><br>
+
+    <label for="cookieValue">قيمة الكوكي:</label>
+    <input type="text" id="cookieValue" placeholder="أدخل قيمة الكوكي">
+    <br><br>
+
+    <label for="cookieDays">مدة الصلاحية (أيام):</label>
+    <input type="number" id="cookieDays" placeholder="أدخل مدة الصلاحية">
+    <br><br>
+
+    <button onclick="setCookie()">إنشاء الكوكي</button>
+    <button onclick="getCookie()">قراءة الكوكي</button>
+    <button onclick="updateCookie()">تحديث الكوكي</button>
+    <button onclick="deleteCookie()">حذف الكوكي</button>
+
+    <h3 id="output"></h3>
+
+    <script>
+        // Set a cookie
+        function setCookie() {
+            const name = document.getElementById("cookieName").value;
+            const value = document.getElementById("cookieValue").value;
+            const days = document.getElementById("cookieDays").value;
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            document.getElementById("output").innerText = `Cookie ${name} set!`;
+        }
+
+        // Get a cookie
+        function getCookie() {
+            const name = document.getElementById("cookieName").value + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookiesArray = decodedCookie.split(';');
+            for (let i = 0; i < cookiesArray.length; i++) {
+                let cookie = cookiesArray[i].trim();
+                if (cookie.indexOf(name) === 0) {
+                    document.getElementById("output").innerText = `Value of ${name} is ${cookie.substring(name.length)}`;
+                    return;
+                }
+            }
+            document.getElementById("output").innerText = `Cookie ${name} not found!`;
+        }
+
+        // Update a cookie
+        function updateCookie() {
+            setCookie(); 
+            document.getElementById("output").innerText = `Cookie updated!`;
+        }
+
+        // Delete a cookie
+        function deleteCookie() {
+            const name = document.getElementById("cookieName").value;
+            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.getElementById("output").innerText = `Cookie ${name} deleted!`;
+        }
+    </script>
+
+</body>
+</html>
