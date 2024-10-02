@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="stylesheet" href="./CSS/style.css">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">  
+  <title>Frontend Mentor | Age calculator app</title>
+
+  
+</head>
+<body>
+  <!-- saeed mohamed -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculator</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+      .input-flex {
+        display: flex;
+        gap: 10px;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .input-container span {
+        margin-bottom: 5px;
+      }
+      .error-day, .error-month, .error-year {
+        color: red;
+        font-size: 12px;
+      }
+      .output {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div class="container">
+      <div class="input-flex">
+        <div class="input-container">
+          <span>Day</span>
+          <input type="number" id="day" placeholder="DD">
+          <small class="error-day"></small>
+        </div>
+        <div class="input-container">
+          <span>Month</span>
+          <input type="number" id="month" placeholder="MM">
+          <small class="error-month"></small>
+        </div>
+        <div class="input-container">
+          <span>Year</span>
+          <input type="number" id="year" placeholder="YYYY">
+          <small class="error-year"></small>
+        </div>
+      </div>
+      <button id="submit-btn">
+        <img src="./assets/images/icon-arrow.svg" alt="icon-arrow">
+      </button>
+      <div class="output">
+        <h1><span class="output-year">--</span> Years</h1>
+        <h1><span class="output-month">--</span> Months</h1>
+        <h1><span class="output-day">--</span> Days</h1>
+      </div>
+    </div>
+  
+    <script>
+      document.getElementById('submit-btn').addEventListener('click', function() {
+        const day = parseInt(document.getElementById('day').value);
+        const month = parseInt(document.getElementById('month').value);
+        const year = parseInt(document.getElementById('year').value);
+  
+        const errorDay = document.querySelector('.error-day');
+        const errorMonth = document.querySelector('.error-month');
+        const errorYear = document.querySelector('.error-year');
+  
+        // Reset error messages
+        errorDay.textContent = '';
+        errorMonth.textContent = '';
+        errorYear.textContent = '';
+  
+        let isValid = true;
+  
+        // Validation
+        if (isNaN(day) || day < 1 || day > 31) {
+          errorDay.textContent = 'Invalid day';
+          isValid = false;
+        }
+  
+        if (isNaN(month) || month < 1 || month > 12) {
+          errorMonth.textContent = 'Invalid month';
+          isValid = false;
+        }
+  
+        if (isNaN(year) || year < 1000 || year > new Date().getFullYear()) {
+          errorYear.textContent = 'Invalid year';
+          isValid = false;
+        }
+  
+        if (isValid) {
+          const birthDate = new Date(year, month - 1, day);
+          const today = new Date();
+          const ageYears = today.getFullYear() - birthDate.getFullYear();
+          const ageMonths = today.getMonth() - birthDate.getMonth();
+          const ageDays = today.getDate() - birthDate.getDate();
+  
+          document.querySelector('.output-year').textContent = ageYears;
+          document.querySelector('.output-month').textContent = ageMonths >= 0 ? ageMonths : 12 + ageMonths;
+          document.querySelector('.output-day').textContent = ageDays >= 0 ? ageDays : 30 + ageDays;
+        }
+      });
+    </script>
+  
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">saeed mohamed</a>.
+    </div>
+  
+  </body>
+  </html>
+  
+</body>
+</html>

@@ -1,0 +1,115 @@
+@font-face {
+    font-family: Pop;
+    src: url(../assets/fonts/Poppins-Regular.ttf);
+}
+
+:root {
+    --Purple: hsl(259, 100%, 65%);
+    --Light-red: hsl(0, 100%, 67%);
+    --White: hsl(0, 0%, 100%);
+    --Off-white: hsl(0, 0%, 94%);
+    --Light-grey: hsl(0, 0%, 86%);
+    --Smokey-grey: hsl(0, 1%, 44%);
+    --Off-black: hsl(0, 0%, 8%);
+}
+
+* {
+    font-family: Pop !important;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--Off-white);
+}
+
+.container {
+    position: relative;
+    padding: 30px;
+    max-width: 80%;
+    width: 420px;
+    background-color: var(--White);
+    border-bottom-right-radius: 150px;
+}
+
+.input-flex {
+    margin-bottom: 20px;
+    display: flex;
+    border-bottom: 2px solid var(--Off-white);
+}
+
+.input-container {
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    flex-direction: column;
+}
+
+input {
+    border: 2px solid var(--Off-white);
+    padding: 10px;
+    border-radius: 5px;
+    width: 70px;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid var(--Purple);
+}
+
+small {
+    font-weight: bold;
+    font-size: 0.6rem;
+    color: red;
+    text-transform: capitalize;
+}
+
+.output span {
+    font-style: italic;
+    color: var(--Purple);
+    font-size: 2.75rem;
+}
+
+.sumbit-btn {
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    right: 30px;
+    top: 60px;
+    background-color: var(--Purple);
+    width: 70px;
+    height: 70px;
+    padding: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sumbit-btn:hover {
+    transition: 1s ease;
+    background-color: var(--Off-black);
+}
+
+@media(max-width: 768px) {
+    input {
+        width: 80%;
+    }
+
+    .output span {
+        font-size: 1.75rem;
+    }
+
+    .sumbit-btn {
+        right: 40%;
+        top: 90px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .sumbit-btn img {
+        transform: scale(0.5);
+    }
+}
